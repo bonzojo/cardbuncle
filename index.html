@@ -8,6 +8,8 @@
 
 </head>
 <body>
+    
+    <div class="overlay"><img src="images/old-weathered-wood-table-dark.png" alt=""></div>
 
     <div id="contentContainer">
         <!-- How to Play -->
@@ -18,12 +20,22 @@
                     Currently as it stands the rules are still being defined. It will involve dice.
                     Strategy and a bit of good old fortune.
                 </p>
+                
         </div>
         <!--Title and TypeFace-->
         <h1 id="title">Grungle</h1>
         <!--
         <h2 id="numbersTypeFace">0123456789</h2>
         -->
+        <div class="dice">
+            <img id="diceOne" src="">
+            <img id="diceTwo" src="">
+            <div class="diceBtn">
+                <button class="rollDice" id="rollDice">Roll Dice</button>
+            </div>
+            
+        </div>
+
         <!--PlayerScore-->
         <h2>Points:<span id="result"></span></h2>
         <h2 id="playerScore"></h2>
@@ -51,6 +63,8 @@
         </div>
 
         <button id="refreshBoard">Shuffle Board</button>
+
+
 
 </div>
 <script src="main.js"></script>

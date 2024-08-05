@@ -11,6 +11,44 @@ witButton.addEventListener('click', function(){
     }
 });
 
+// Dice Functions
+const diceArray = ['images/dice1.png', 'images/dice2.png', 'images/dice3.png', 'images/dice4.png', 'images/dice5.png', 'images/dice6.png'];
+const diceButton = document.getElementById('rollDice');
+const diceOne = document.getElementById('diceOne');
+const diceTwo = document.getElementById('diceTwo');
+
+let diceOneValue;
+let diceTwoValue;
+
+function rollDice() {
+    let interval = 0;
+    const increment = 12; 
+    const maxSteps = 16; 
+    let currentStep = 0;
+
+    function updateDice() {
+        diceOne.setAttribute('src', diceArray[Math.floor(Math.random() * diceArray.length)]);
+        diceTwo.setAttribute('src', diceArray[Math.floor(Math.random() * diceArray.length)]);
+    }
+
+    function roll() {
+        if (currentStep < maxSteps) {
+            updateDice();
+            currentStep++;
+            interval += increment;
+            setTimeout(roll, interval);
+        } else {
+            // Store values and +1 for array index
+            diceOneValue = diceArray.indexOf(diceOne.getAttribute('src')) + 1;
+            diceTwoValue = diceArray.indexOf(diceTwo.getAttribute('src')) + 1;
+        }
+    }
+    roll();
+}
+diceButton.addEventListener('click', rollDice);
+
+
+
 // Define suits and values
 const transparentReverse = [
     { name: 'Reverse', img: 'images/CardReverse.png'},
