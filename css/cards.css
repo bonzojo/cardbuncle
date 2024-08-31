@@ -41,9 +41,4 @@
 }
 
 
-.gridSquare.occupied {
-    cursor: not-allowed; 
-}
-.gridSquare {
-    cursor: pointer; 
-}
+

@@ -4,33 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grungle</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="cards.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/cards.css">
 
 </head>
 <body>
     
     <div class="overlay"><img src="assets/old-weathered-wood-table-dark.png" alt=""></div>
 
-    <div id="contentContainer">
-        <!-- How to Play -->
-        <button id="whatIsThis">Grungle?</button>
-        <div id="witContainer" style="display: none;">
-                <p>Grungle is an experimental proof of concept. <br/>
-                    A Card game played in a shady tavern. Over a dark malt brew. </br>
-                    Currently as it stands the rules are still being defined. It will involve dice.
-                    Strategy and a bit of good old fortune.
-                </p>
-                
-        </div>
         <!--Title and TypeFace-->
         <h1 id="title">Grungle</h1>
-        <!--
-        <h2 id="numbersTypeFace">0123456789</h2>
-        -->
+
         <div class="dice">
-            <img id="diceOne" src="">
-            <img id="diceTwo" src="">           
+            <img id="diceOne" src="./assets/dice/dice1.png" draggable="true">
+            <img id="diceTwo" src="./assets/dice/dice1.png" draggable="true">           
         </div>
         <div class="diceBtn">
             <button class="rollDice" id="rollDice">Roll Dice</button>
@@ -63,6 +50,8 @@
 
 
 </div>
-<script src="main.js"></script>
+<script src="./js/main.js"></script>
+<script src="./js/cards.js"></script>
+<script src="./js/dice.js"></script>
 </body>
 </html>

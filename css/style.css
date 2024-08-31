@@ -1,19 +1,20 @@
 @font-face {
     font-family: 'grungleFont';
-    src: url(assets/fonts/BuGothicHybrid-xyd5.ttf);
+    src: url(../assets/fonts/BuGothicHybrid-xyd5.ttf) format('truetype');
 }
 @font-face {
     font-family: 'grungleNumbers';
-    src: url(assets/fonts/Crashnumberingserif-KVjW.ttf);
+    src: url(../assets/fonts/Crashnumberingserif-KVjW.ttf) format('truetype');
 }
 
 body {
     margin: 0 auto;
     padding: 0 auto;
     text-align: center;
-    background: linear-gradient(180deg, rgb(74, 44, 19), rgb(47, 23, 6)); 
+    background: linear-gradient(180deg, rgb(74, 44, 19), rgb(47, 23, 6));
+    border: solid 4px black; 
     color: bisque;
-    
+    height: 100vh;
 }
 
 .overlay {
@@ -94,7 +95,7 @@ body {
 /* Board */
 .gridBoard {
     margin: 0 auto;
-    margin-bottom: 4%;
+
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -107,7 +108,11 @@ body {
     width: 140px;
     padding: 7px;
     border: solid 1px goldenrod;
-    
+    cursor: pointer;
+}
+
+.gridSquare.occupied {
+    cursor: not-allowed; 
 }
 
 .gridSquare img {
