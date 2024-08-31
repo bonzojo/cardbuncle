@@ -12,7 +12,7 @@ witButton.addEventListener('click', function(){
 });
 
 // Dice Functions
-const diceArray = ['assetts/dice/dice1.png', 'assetts/dice/dice2.png', 'assetts/dice/dice3.png', 'assetts/dice/dice4.png', 'assetts/dice/dice5.png', 'assetts/dice/dice6.png'];
+const diceArray = ['assets/dice/dice1.png', 'assets/dice/dice2.png', 'assets/dice/dice3.png', 'assets/dice/dice4.png', 'assets/dice/dice5.png', 'assets/dice/dice6.png'];
 const diceButton = document.getElementById('rollDice');
 const diceOne = document.getElementById('diceOne');
 const diceTwo = document.getElementById('diceTwo');
@@ -51,18 +51,18 @@ diceButton.addEventListener('click', rollDice);
 
 // Define suits and values
 const transparentReverse = [
-    { name: 'Reverse', img: 'assetts/cards/CardReverse.png'},
-    { name: 'Transparent', img: 'assetts/cards/CardTransparent'},
+    { name: 'Reverse', img: 'assets/cards/CardReverse.png'},
+    { name: 'Transparent', img: 'assets/cards/CardTransparent'},
 ]
 const suits = [
-    { name: 'Dragon', img: 'assetts/cards/DragonCard.png'},
-    { name: 'Kraken', img: 'assetts/cards/KrakenCard.png'},
-    { name: 'Unicorn', img: 'assetts/cards/UnicornCard.png'},
-    { name: 'fairy', img: 'assetts/cards/FairyCard.png'},
-    { name: 'Gargoyle', img: 'assetts/cards/GargoyleCard.png'},
-    { name: 'Gryphon', img: 'assetts/cards/GryphonCard.png'},
-    { name: 'Joker', img: 'assetts/cards/JokerCard.png'},
-    { name: 'Mermaid', img: 'assetts/cards/MermaidCard.png'}
+    { name: 'Dragon', img: 'assets/cards/DragonCard.png'},
+    { name: 'Kraken', img: 'assets/cards/KrakenCard.png'},
+    { name: 'Unicorn', img: 'assets/cards/UnicornCard.png'},
+    { name: 'fairy', img: 'assets/cards/FairyCard.png'},
+    { name: 'Gargoyle', img: 'assets/cards/GargoyleCard.png'},
+    { name: 'Gryphon', img: 'assets/cards/GryphonCard.png'},
+    { name: 'Joker', img: 'assets/cards/JokerCard.png'},
+    { name: 'Mermaid', img: 'assets/cards/MermaidCard.png'}
 ];
 const values = ['1','2','3','4','5','6','7'];
 

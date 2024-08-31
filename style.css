@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'grungleFont';
-    src: url(assetts/fonts/BuGothicHybrid-xyd5.ttf);
+    src: url(assets/fonts/BuGothicHybrid-xyd5.ttf);
 }
 @font-face {
     font-family: 'grungleNumbers';
-    src: url(assetts/fonts/Crashnumberingserif-KVjW.ttf);
+    src: url(assets/fonts/Crashnumberingserif-KVjW.ttf);
 }
 
 body {
