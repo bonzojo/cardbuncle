@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'grungleFont';
-    src: url(fonts/BuGothicHybrid-xyd5.ttf);
+    src: url(assetts/fonts/BuGothicHybrid-xyd5.ttf);
 }
 @font-face {
     font-family: 'grungleNumbers';
-    src: url(fonts/Crashnumberingserif-KVjW.ttf);
+    src: url(assetts/fonts/Crashnumberingserif-KVjW.ttf);
 }
 
 body {
@@ -132,7 +132,7 @@ body {
 .card-value{
     position: absolute;
     top: 3%;
-    left: 4%;
+    right: 4%;
     width: 20px;
     background-color: black;
     border: solid 1px goldenrod;
