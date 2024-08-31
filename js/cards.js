@@ -13,23 +13,30 @@ const suits = [
 
 const values = ['1', '2', '3', '4', '5', '6'];
 
-
 let deck = [];
 
-// Create the deck
-for (const suit of suits) {
-    for (const value of values) {
-        deck.push({ suit: suit.name, value: value, img: suit.img, reverse: suit.reverse });
+for (let i = 0; i < suits.length; i++) {
+    for (let j = 0; j < values.length; j++) {
+        const uniqueId = `${suits[i].name[0]}-${values[j]}-${i * values.length + j}`;
+        deck.push({
+            id: uniqueId,
+            suit: suits[i].name,
+            value: values[j],
+            img: suits[i].img,
+            reverse: suits[i].reverse
+        });
     }
 }
 
-// Shuffle the deck
 const shuffleDeck = (deck) => {
     for (let i = deck.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
         [deck[i], deck[j]] = [deck[j], deck[i]];
     }
 }
+
+shuffleDeck(deck);
+
 
 function renderDeckStack() {
     const deckStackContainer = document.querySelector('.deckStack');

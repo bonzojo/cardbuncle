@@ -4,14 +4,12 @@ const diceButton = document.getElementById('rollDice');
 const diceOne = document.getElementById('diceOne');
 const diceTwo = document.getElementById('diceTwo');
 
-
-let diceOneValue;
-let diceTwoValue;
+let diceValues = {};
 
 function rollDice() {
     let interval = 0;
-    const increment = 12; 
-    const maxSteps = 16; 
+    const increment = 12;
+    const maxSteps = 16;
     let currentStep = 0;
 
     function updateDice() {
@@ -26,11 +24,12 @@ function rollDice() {
             interval += increment;
             setTimeout(roll, interval);
         } else {
-            // Store values and +1 for array index
-            diceOneValue = diceArray.indexOf(diceOne.getAttribute('src')) + 1;
-            diceTwoValue = diceArray.indexOf(diceTwo.getAttribute('src')) + 1;
-            console.log(diceOneValue);
-            console.log(diceTwoValue);
+            diceValues = {
+                diceOne: diceArray.indexOf(diceOne.getAttribute('src')) + 1,
+                diceTwo: diceArray.indexOf(diceTwo.getAttribute('src')) + 1
+            };
+            console.log(diceValues.diceOne);
+            console.log(diceValues.diceTwo);
         }
     }
     roll();

@@ -52,8 +52,13 @@ function handleDrop(event) {
     const cardContainer = document.createElement('div');
     cardContainer.classList.add('card-container');
 
+// If this is a deck card then add the card
+//
     const cardImg = document.createElement('img');
-    cardImg.setAttribute('src', cardData.img);
+    cardImg.setAttribute('src', cardData.img); //<--- Trying to access this with the dice
+
+// instead if it is a dice, update the cards value
+//
 
     const cardValue = document.createElement('div');
     cardValue.classList.add('card-value');
