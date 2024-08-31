@@ -1,0 +1,49 @@
+.card-container {
+    position: relative;
+}
+
+.card-value{
+    position: absolute;
+    top: 3%;
+    right: 4%;
+    width: 20px;
+    background-color: black;
+    border: solid 1px goldenrod;
+    border-radius: 3px;
+    padding: 4px;
+    font-size: 36px;
+    font-family: 'grungleNumbers';
+}
+
+.deckStack {
+    position: absolute;
+    right: 15%;
+    top: 40%;
+    height: 280px;
+    width: 205px;
+    cursor: grab;
+}
+
+.deck-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 205px; 
+    height: 280px;
+    border: solid 0.2px #6c5a41;
+}
+
+.deck-card:nth-child(1) {
+    z-index: 10;
+}
+.deck-card:nth-child(2) {
+    z-index: 9;
+}
+
+
+.gridSquare.occupied {
+    cursor: not-allowed; 
+}
+.gridSquare {
+    cursor: pointer; 
+}

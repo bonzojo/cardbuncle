@@ -16,13 +16,6 @@ body {
     
 }
 
-/*
-.texture{
-    background-image: url('images/old-weathered-wood-table-dark.png');
-    background-size: cover;
-}
-*/
-
 .overlay {
     position: fixed;
     top: 0;
@@ -82,7 +75,8 @@ body {
 /* Dice */
 .dice {
     position: absolute;
-    margin: 16em 10em 20em 10em; 
+    top: 50%;
+    left: 10%;
 }
 
 #diceOne, #diceTwo {
@@ -93,14 +87,14 @@ body {
 
 .diceBtn{
     position: absolute;
-    margin-top: 3em;
-    margin-left: 6.5em;
+    top: 70%;
+    left: 16%;
 }
 
 /* Board */
 .gridBoard {
     margin: 0 auto;
-    margin-bottom: 20px;
+    margin-bottom: 4%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -113,6 +107,7 @@ body {
     width: 140px;
     padding: 7px;
     border: solid 1px goldenrod;
+    
 }
 
 .gridSquare img {
@@ -125,24 +120,3 @@ body {
     background-color: goldenrod;
 }
 
-.card-container {
-    position: relative;
-}
-
-.card-value{
-    position: absolute;
-    top: 3%;
-    right: 4%;
-    width: 20px;
-    background-color: black;
-    border: solid 1px goldenrod;
-    border-radius: 3px;
-    padding: 4px;
-    font-size: 36px;
-    font-family: 'grungleNumbers';
-}
-
-#refreshBoard {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}

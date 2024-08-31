@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grungle</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="cards.css">
 
 </head>
 <body>
@@ -29,16 +30,11 @@
         -->
         <div class="dice">
             <img id="diceOne" src="">
-            <img id="diceTwo" src="">
-            <div class="diceBtn">
-                <button class="rollDice" id="rollDice">Roll Dice</button>
-            </div>
-            
+            <img id="diceTwo" src="">           
         </div>
-
-        <!--PlayerScore-->
-        <h2>Points:<span id="result"></span></h2>
-        <h2 id="playerScore"></h2>
+        <div class="diceBtn">
+            <button class="rollDice" id="rollDice">Roll Dice</button>
+        </div>
 
         <!--GameBoard-->
         <div class="gridBoard">
@@ -62,8 +58,8 @@
             </div>
         </div>
 
-        <button id="refreshBoard">Shuffle Board</button>
-
+        <div class="deckStack">
+        </div>
 
 
 </div>
