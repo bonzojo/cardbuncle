@@ -170,3 +170,28 @@ gridSquares.forEach(gridSquare => {
     gridSquare.addEventListener('dragover', handleDragOver);
     gridSquare.addEventListener('drop', handleDrop);
 });
+
+// Start Again?
+const reshuffle = document.getElementById('startAgain');
+
+function resetGame() {
+
+    diceOne.style.display = 'inline-block';
+    diceTwo.style.display = 'inline-block';
+    diceOne.setAttribute('src', './assets/dice/dice1.png');
+    diceTwo.setAttribute('src', './assets/dice/dice1.png');
+    diceValues = { diceOne: 1, diceTwo: 1 };
+    diceUsed = { diceOne: false, diceTwo: false };
+
+    gridSquares.forEach(square => {
+        const cardContainer = square.querySelector('.card-container');
+        if (cardContainer) {
+            square.removeChild(cardContainer);
+        }
+    });
+
+    shuffleDeck(deck);
+    renderDeckStack();
+}
+
+reshuffle.addEventListener('click', resetGame);

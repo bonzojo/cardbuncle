@@ -36,8 +36,6 @@ function rollDice() {
                 diceOne: diceArray.indexOf(diceOne.getAttribute('src')) + 1,
                 diceTwo: diceArray.indexOf(diceTwo.getAttribute('src')) + 1
             };
-            console.log(diceValues.diceOne);
-            console.log(diceValues.diceTwo);
             diceUsed = { diceOne: false, diceTwo: false }; // Reset diceUsed state for new roll
         }
     }

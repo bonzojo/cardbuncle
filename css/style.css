@@ -6,9 +6,9 @@ src: url(../assets/fonts/BuGothicHybrid-xyd5.ttf) format('truetype');
 font-family: 'grungleNumbers';
 src: url(../assets/fonts/Crashnumberingserif-KVjW.ttf) format('truetype');
 }
-
-.container{
-height: 120vh;
+@font-face {
+    font-family: 'scripto';
+    src: url(../assets/fonts/Scripto-2OR2v.ttf) format('truetype');
 }
 
 body {
@@ -49,8 +49,34 @@ font-size: 120px;
 -webkit-text-stroke: 2px black;
 }
 
+.grungleBtn {
+    height: 60px;
+    width: 100px;
+    position: absolute;
+    background-color: black;
+    border: solid 1px goldenrod;
+    border-radius: 5%;
+    color: burlywood;
+    font-family: 'scripto', 'Courier New', Courier, monospace;
+    font-size: larger;
+    cursor: pointer;
+}
+.grungleBtn:active {
+    background-color: rgb(31, 31, 31);
+}
 
+#startAgain {
+    top: 4%;
+    right: 4%;
+}
 
+#how2play {
+    top: 4%;
+    left: 4%;
+}
+#how2play a {
+    text-decoration: none;
+}
 /* Dice */
 .dice {
 position: absolute;
@@ -76,7 +102,8 @@ left: 16%;
 /* Board */
 .gridBoard {
 margin: 0 auto;
-margin-bottom: 5%;
+margin-top: 3%;
+margin-bottom: 10%;
 display: flex;
 flex-wrap: wrap;
 justify-content: space-between;
