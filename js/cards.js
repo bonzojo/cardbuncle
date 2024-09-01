@@ -1,4 +1,3 @@
-
 // Define suits and values
 const suits = [
     { name: 'Dragon', img: 'assets/cards/DragonCard.png', reverse: 'assets/cards/CardReverse.png'},
@@ -37,33 +36,30 @@ const shuffleDeck = (deck) => {
 
 shuffleDeck(deck);
 
-
 function renderDeckStack() {
     const deckStackContainer = document.querySelector('.deckStack');
 
-    deckStackContainer.innerHTML = ' '; 
-
-    // append each card
+    // Append each card
     deck.forEach((card, index) => {
         const cardElement = document.createElement('img');
 
         // Set the source to the reverse image
         cardElement.setAttribute('src', card.reverse);
         cardElement.setAttribute('alt', `${card.suit} ${card.value}`);
-        cardElement.classList.add('deck-card'); 
+        cardElement.classList.add('deck-card');
 
         cardElement.setAttribute('draggable', 'true');
         cardElement.setAttribute('data-index', index);
 
-        //event listeners
+        // Event listeners
         cardElement.addEventListener('dragstart', (event) => {
             event.dataTransfer.setData('type', 'card');
-            event.dataTransfer.setData('text/plain', index);
+            event.dataTransfer.setData('text/plain', index.toString());
             cardGrab.play(); 
         });
         cardElement.addEventListener('dragend', handleDragEnd);
 
-        // offset for stack effect
+        // Offset for stack effect
         cardElement.style.top = `${index * 2}px`;  
         cardElement.style.left = `${index * 2}px`; 
 
@@ -72,7 +68,6 @@ function renderDeckStack() {
         deckStackContainer.appendChild(cardElement);
     });
 }
-
 
 // Shuffle and render the deck stack
 shuffleDeck(deck);
