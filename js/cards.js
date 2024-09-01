@@ -56,7 +56,11 @@ function renderDeckStack() {
         cardElement.setAttribute('data-index', index);
 
         //event listeners
-        cardElement.addEventListener('dragstart', handleDragStart);
+        cardElement.addEventListener('dragstart', (event) => {
+            event.dataTransfer.setData('type', 'card');
+            event.dataTransfer.setData('text/plain', index);
+            cardGrab.play(); 
+        });
         cardElement.addEventListener('dragend', handleDragEnd);
 
         // offset for stack effect
@@ -73,4 +77,3 @@ function renderDeckStack() {
 // Shuffle and render the deck stack
 shuffleDeck(deck);
 renderDeckStack();
-console.log(deck);

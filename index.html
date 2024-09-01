@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="./css/cards.css">
 
 </head>
-<body>
+<body>      
     
     <div class="overlay"><img src="assets/old-weathered-wood-table-dark.png" alt=""></div>
-
+        <div class="container">
         <!--Title and TypeFace-->
         <h1 id="title">Grungle</h1>
 
@@ -20,7 +20,7 @@
             <img id="diceTwo" src="./assets/dice/dice1.png" draggable="true">           
         </div>
         <div class="diceBtn">
-            <button class="rollDice" id="rollDice">Roll Dice</button>
+            <button class="rollDice" id="rollDice" hidden>Roll Dice</button>
         </div>
 
         <!--GameBoard-->
@@ -45,13 +45,17 @@
             </div>
         </div>
 
-        <div class="deckStack">
-        </div>
+        <div class="deckStack"></div>
+        
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
 
-
-</div>
 <script src="./js/main.js"></script>
 <script src="./js/cards.js"></script>
 <script src="./js/dice.js"></script>
+<script src="./js/sounds.js"></script>
+
+
+
 </body>
 </html>

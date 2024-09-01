@@ -40,5 +40,7 @@
     z-index: 9;
 }
 
-
+.selected {
+    border: solid 4px whitesmoke;
+}
 

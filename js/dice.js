@@ -4,9 +4,17 @@ const diceButton = document.getElementById('rollDice');
 const diceOne = document.getElementById('diceOne');
 const diceTwo = document.getElementById('diceTwo');
 
-let diceValues = {};
+let diceValues = { diceOne: 1, diceTwo: 1 };
+let diceUsed = { diceOne: false, diceTwo: false };
+
+function showDice() {
+    diceOne.style.display = 'inline-block';
+    diceTwo.style.display = 'inline-block'; 
+}
 
 function rollDice() {
+    showDice();
+    diceRoll.play();
     let interval = 0;
     const increment = 12;
     const maxSteps = 16;
@@ -30,10 +38,34 @@ function rollDice() {
             };
             console.log(diceValues.diceOne);
             console.log(diceValues.diceTwo);
+            diceUsed = { diceOne: false, diceTwo: false }; // Reset diceUsed state for new roll
         }
     }
     roll();
 }
+
 diceButton.addEventListener('click', rollDice);
 
+// Add event listeners to the dice elements
+diceOne.addEventListener('dragstart', (event) => {
+    event.dataTransfer.setData('type', 'dice');
+    event.dataTransfer.setData('text/plain', 'diceOne');
+    crystalHum.play();
+    gridSquares.forEach(square => square.classList.add('pulsing-glow'));
 
+});
+diceTwo.addEventListener('dragstart', (event) => {
+    event.dataTransfer.setData('type', 'dice');
+    event.dataTransfer.setData('text/plain', 'diceTwo');
+    crystalHum.play();
+    gridSquares.forEach(square => square.classList.add('pulsing-glow'));
+});
+
+diceOne.addEventListener('dragend', () => {
+    crystalHum.stop();
+    gridSquares.forEach(square => square.classList.remove('pulsing-glow'));
+});
+diceTwo.addEventListener('dragend', () => {
+    crystalHum.stop();
+    gridSquares.forEach(square => square.classList.remove('pulsing-glow'));
+});
