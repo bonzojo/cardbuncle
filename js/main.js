@@ -28,13 +28,8 @@ function handleDrop(event) {
 
         if (gridSquare.querySelector('.card-container')) {
             // Return the card to the deck
-            deck.push({
-                suit: cardData.suit,
-                value: cardData.value,
-                img: cardData.img,
-                reverse: cardData.reverse
-            });
             return;
+            
         }
 
         const cardContainer = document.createElement('div');
