@@ -1,5 +1,11 @@
 const gridSquares = document.querySelectorAll('.gridSquare');
 
+let totalCards = 48;
+const cardsLeft = document.getElementById('cardsLeft');
+function updateCardsLeft() {
+    cardsLeft.textContent = totalCards; 
+}
+
 // Variables to track selected cards
 let selectedCards = [];
 
@@ -143,6 +149,13 @@ function handleCardClick(event) {
             card1.parentElement.removeChild(card1);
             card2.parentElement.removeChild(card2);
 
+            totalCards -=2;
+            updateCardsLeft();
+            //Win condition
+            if(totalCards === 0) {
+                alert('You win!')
+            }
+
             rollDice();
 
             setTimeout(() => {
@@ -190,3 +203,4 @@ function resetGame() {
 }
 
 reshuffle.addEventListener('click', resetGame);
+
