@@ -1,26 +1,157 @@
-const gridSquares = document.querySelectorAll('.gridSquare');
+//----------
+//Globals
+//----------
 
+//Dice
+const diceArray = ['assets/dice/dice1.png', 'assets/dice/dice2.png', 'assets/dice/dice3.png', 'assets/dice/dice4.png', 'assets/dice/dice5.png', 'assets/dice/dice6.png'];
+const diceButton = document.getElementById('rollDice');
+const diceOne = document.getElementById('diceOne');
+const diceTwo = document.getElementById('diceTwo');
+
+let diceValues = { diceOne: 1, diceTwo: 1 };
+let diceUsed = { diceOne: false, diceTwo: false };
+
+//Deck & Cards
+const deckStackContainer = document.querySelector('.deckStack');
+const suits = [
+    { name: 'Dragon', img: 'assets/cards/DragonCard.png', reverse: 'assets/cards/CardReverse.png'},
+    { name: 'Kraken', img: 'assets/cards/KrakenCard.png', reverse: 'assets/cards/CardReverse.png'},
+    { name: 'Unicorn', img: 'assets/cards/UnicornCard.png', reverse: 'assets/cards/CardReverse.png'},
+    { name: 'Fairy', img: 'assets/cards/FairyCard.png', reverse: 'assets/cards/CardReverse.png'},
+    { name: 'Gargoyle', img: 'assets/cards/GargoyleCard.png', reverse: 'assets/cards/CardReverse.png'},
+    { name: 'Gryphon', img: 'assets/cards/GryphonCard.png', reverse: 'assets/cards/CardReverse.png'},
+    { name: 'Joker', img: 'assets/cards/JokerCard.png', reverse: 'assets/cards/CardReverse.png'},
+    { name: 'Mermaid', img: 'assets/cards/MermaidCard.png', reverse: 'assets/cards/CardReverse.png'}
+];
+
+const values = ['1', '2', '3', '4', '5', '6'];
+
+//Create Deck
+let deck = [];
+for (let i = 0; i < suits.length; i++) {
+    for (let j = 0; j < values.length; j++) {
+        const uniqueId = `${suits[i].name[0]}-${values[j]}-${i * values.length + j}`;
+        deck.push({
+            id: uniqueId,
+            suit: suits[i].name,
+            value: values[j],
+            img: suits[i].img,
+            reverse: suits[i].reverse
+        });
+    }
+}
+
+//Board
+const gridSquares = document.querySelectorAll('.gridSquare');
+const cardContainer = document.createElement('div');
+
+
+// Track selected cards
+let selectedCards = [];
 let totalCards = 48;
 const cardsLeft = document.getElementById('cardsLeft');
+
+// Start Again?
+const reshuffle = document.getElementById('startAgain');
+
+
+//Initialize Sounds
+const cardGrab = new Howl({
+    src: ['../assets/sfx/cardGrab.mp3'],
+    volume: 0.2,
+  });
+
+  const cardPlace = new Howl({
+    src: ['../assets/sfx/cardPlace.mp3'],
+    volume: 0.1,
+  });
+
+  const select = new Howl({
+    src: ['../assets/sfx/select.mp3'],
+    volume: 0.2,
+  });
+
+  const poof = new Howl({
+    src: ['../assets/sfx/poof.mp3'],
+    volume: 0.8,
+  });
+
+  const diceRoll = new Howl({
+    src: ['../assets/sfx/diceRoll.mp3'],
+    volume: 0.2,
+  });
+
+  const buff = new Howl({
+    src: ['../assets/sfx/buff.mp3'],
+    volume: 0.1,
+  });
+
+  const crystalHum = new Howl({
+    src: ['../assets/sfx/crystalHum.mp3'],
+    volume: 0.4,
+  });
+
+
+//----------------
+// Event Listeners
+//----------------
+
+reshuffle.addEventListener('click', resetGame);
+
+gridSquares.forEach(gridSquare => {
+    gridSquare.addEventListener('dragover', handleDragOver);
+    gridSquare.addEventListener('drop', handleDrop);
+});
+
+// Add event listeners to the dice elements
+diceButton.addEventListener('click', rollDice);
+
+diceOne.addEventListener('dragstart', (event) => {
+    event.dataTransfer.setData('type', 'dice');
+    event.dataTransfer.setData('text/plain', 'diceOne');
+    crystalHum.play();
+    gridSquares.forEach(square => square.classList.add('pulsing-glow'));
+
+});
+diceTwo.addEventListener('dragstart', (event) => {
+    event.dataTransfer.setData('type', 'dice');
+    event.dataTransfer.setData('text/plain', 'diceTwo');
+    crystalHum.play();
+    gridSquares.forEach(square => square.classList.add('pulsing-glow'));
+});
+
+diceOne.addEventListener('dragend', () => {
+    crystalHum.stop();
+    gridSquares.forEach(square => square.classList.remove('pulsing-glow'));
+});
+diceTwo.addEventListener('dragend', () => {
+    crystalHum.stop();
+    gridSquares.forEach(square => square.classList.remove('pulsing-glow'));
+});
+
+
+//---------------
+// Functions
+//---------------
+
 function updateCardsLeft() {
     cardsLeft.textContent = totalCards; 
 }
-
-// Variables to track selected cards
-let selectedCards = [];
 
 // Drag handlers
 function handleDragStart(event) {
     event.dataTransfer.setData('text/plain', event.target.getAttribute('data-index'));
     event.target.classList.add('dragging');
 }
+
 function handleDragEnd(event) {
     event.target.classList.remove('dragging');
 }
+
 function handleDragOver(event) {
     event.preventDefault();
 }
-// Handle drop event for grid squares
+
 function handleDrop(event) {
     event.preventDefault();
     
@@ -32,17 +163,18 @@ function handleDrop(event) {
         const cardIndex = event.dataTransfer.getData('text/plain');
         const cardData = deck[cardIndex];
 
+        // Check if the grid square already has a card
         if (gridSquare.querySelector('.card-container')) {
-            // Return the card to the deck
+            // Grid square already occupied, do nothing
             return;
-            
         }
 
+        // Create a new card container for this card
         const cardContainer = document.createElement('div');
         cardContainer.classList.add('card-container');
         cardContainer.setAttribute('data-card-index', cardIndex); // Store index for reference
         cardContainer.addEventListener('click', handleCardClick); // Add click handler
-        cardPlace.play();
+        
         const cardImg = document.createElement('img');
         cardImg.setAttribute('src', cardData.img);
         cardImg.setAttribute('data-card-id', cardIndex); 
@@ -52,17 +184,23 @@ function handleDrop(event) {
         cardValue.classList.add('card-value');
         cardValue.textContent = cardData.value;
 
+        // Append card image and value to the card container
         cardContainer.appendChild(cardImg);
         cardContainer.appendChild(cardValue);
+
+        // Append the card container to the grid square
         gridSquare.appendChild(cardContainer);
 
         // Remove the card from the deck stack
-        const deckStackContainer = document.querySelector('.deckStack');
         const deckCard = deckStackContainer.querySelector(`img[data-index='${cardIndex}']`);
         if (deckCard) deckStackContainer.removeChild(deckCard);
 
-    // Handle dropping dice
-    } else if (itemType === 'dice') {
+        // Play sound when the card is placed
+        cardPlace.play();
+    }
+
+    // Handle dropping dice (this part of your code seems fine)
+    else if (itemType === 'dice') {
         const diceId = event.dataTransfer.getData('text/plain');
     
         // Check if the dice is already used
@@ -92,18 +230,18 @@ function handleDrop(event) {
 }
 
 function handleCardClick(event) {
-    const cardContainer = event.currentTarget;
+    const cardTarget = event.currentTarget;
 
     // Deselect if already selected
-    if (selectedCards.includes(cardContainer)) {
-        cardContainer.classList.remove('selected');
-        selectedCards = selectedCards.filter(card => card !== cardContainer);
+    if (selectedCards.includes(cardTarget)) {
+        cardTarget.classList.remove('selected');
+        selectedCards = selectedCards.filter(card => card !== cardTarget);
         return;
     }
 
     // Select the card
-    cardContainer.classList.add('selected');
-    selectedCards.push(cardContainer);
+    cardTarget.classList.add('selected');
+    selectedCards.push(cardTarget);
     select.play();
 
     // Check if two cards are selected
@@ -174,14 +312,6 @@ function handleCardClick(event) {
     }
 }
 
-gridSquares.forEach(gridSquare => {
-    gridSquare.addEventListener('dragover', handleDragOver);
-    gridSquare.addEventListener('drop', handleDrop);
-});
-
-// Start Again?
-const reshuffle = document.getElementById('startAgain');
-
 function resetGame() {
 
     diceOne.style.display = 'inline-block';
@@ -192,15 +322,93 @@ function resetGame() {
     diceUsed = { diceOne: false, diceTwo: false };
 
     gridSquares.forEach(square => {
-        const cardContainer = square.querySelector('.card-container');
-        if (cardContainer) {
-            square.removeChild(cardContainer);
+        const cardContainer2 = square.querySelector('.card-container');
+        if (cardContainer2) {
+            square.removeChild(cardContainer2);
         }
     });
-
     shuffleDeck(deck);
     renderDeckStack();
+    totalCards = 48;
+    cardsLeft.textContent = totalCards;
 }
 
-reshuffle.addEventListener('click', resetGame);
+function shuffleDeck(deck) {
+    for (let i = deck.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [deck[i], deck[j]] = [deck[j], deck[i]];
+    }
+}
 
+function renderDeckStack() {
+    const deckStackContainer = document.querySelector('.deckStack');
+
+    // Append each card
+    deck.forEach((card, index) => {
+        const cardElement = document.createElement('img');
+
+        // Set the source to the reverse image
+        cardElement.setAttribute('src', card.reverse);
+        cardElement.setAttribute('alt', `${card.suit} ${card.value}`);
+        cardElement.classList.add('deck-card');
+
+        cardElement.setAttribute('draggable', 'true');
+        cardElement.setAttribute('data-index', index);
+
+        // Event listeners
+        cardElement.addEventListener('dragstart', (event) => {
+            event.dataTransfer.setData('type', 'card');
+            event.dataTransfer.setData('text/plain', index.toString());
+            cardGrab.play(); 
+        });
+        cardElement.addEventListener('dragend', handleDragEnd);
+
+        // Offset for stack effect
+        cardElement.style.top = `${index * 2}px`;  
+        cardElement.style.left = `${index * 2}px`; 
+
+        cardElement.style.zIndex = index; 
+
+        deckStackContainer.appendChild(cardElement);
+    });
+}
+
+// Dice Functions
+function showDice() {
+    diceOne.style.display = 'inline-block';
+    diceTwo.style.display = 'inline-block'; 
+}
+
+function rollDice() {
+    showDice();
+    diceRoll.play();
+    let interval = 0;
+    const increment = 12;
+    const maxSteps = 16;
+    let currentStep = 0;
+
+    function updateDice() {
+        diceOne.setAttribute('src', diceArray[Math.floor(Math.random() * diceArray.length)]);
+        diceTwo.setAttribute('src', diceArray[Math.floor(Math.random() * diceArray.length)]);
+    }
+
+    function roll() {
+        if (currentStep < maxSteps) {
+            updateDice();
+            currentStep++;
+            interval += increment;
+            setTimeout(roll, interval);
+        } else {
+            diceValues = {
+                diceOne: diceArray.indexOf(diceOne.getAttribute('src')) + 1,
+                diceTwo: diceArray.indexOf(diceTwo.getAttribute('src')) + 1
+            };
+            diceUsed = { diceOne: false, diceTwo: false }; // Reset diceUsed state for new roll
+        }
+    }
+    roll();
+}
+
+// Shuffle and render the deck stack
+shuffleDeck(deck);
+renderDeckStack();
