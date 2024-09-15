@@ -183,3 +183,94 @@ z-index: 9999;
 }
 }
 
+/*Cards*/
+.card-container {
+    position: relative;
+}
+
+.card-value{
+    position: absolute;
+    top: 3%;
+    right: 4%;
+    width: 20px;
+    background-color: black;
+    border: solid 1px goldenrod;
+    border-radius: 3px;
+    padding: 4px;
+    font-size: 36px;
+    font-family: 'grungleNumbers';
+}
+
+.deckStack {
+    position: absolute;
+    right: 15%;
+    top: 40%;
+    height: 280px;
+    width: 205px;
+    cursor: grab;
+}
+
+.deck-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 205px; 
+    height: 280px;
+    border: solid 0.2px #6c5a41;
+}
+
+.deck-card:nth-child(1) {
+    z-index: 10;
+}
+.deck-card:nth-child(2) {
+    z-index: 9;
+}
+
+.selected {
+    border: solid 4px whitesmoke;
+}
+
+/*About Page */
+#back2grungle {
+    height: 60px;
+    width: 100px;
+    background: linear-gradient(-180deg, #65421a, #a56c2a);
+    border: solid 2px black;
+    border-radius: 5%;
+    font-family: 'grungleFont', 'Courier New', Courier, monospace;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+#back2grungle:hover {
+    border: solid 1px goldenrod;
+}
+
+#back2grungle a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+.box img {
+    height: 280px;
+    width: 280px;
+}
+
+.box {
+    height: 280px;
+    width: 280px;
+    padding: 7px;
+    border: solid 1px goldenrod;
+    cursor: pointer;
+    }
+
+.boxContainer {
+    margin: 0 auto;
+    margin-top: 3%;
+    margin-bottom: 10%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 900px; /*cards x3 is exactly 840px */
+    width: 1000px; /* cards x3 is exactly 615px */
+    }
