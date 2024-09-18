@@ -1,9 +1,9 @@
 @font-face {
-font-family: 'cardbuncleFont';
+font-family: 'cardbungleFont';
 src: url(../assets/fonts/BuGothicHybrid-xyd5.ttf) format('truetype');
 }
 @font-face {
-font-family: 'cardbuncleNumbers';
+font-family: 'cardbungleNumbers';
 src: url(../assets/fonts/Crashnumberingserif-KVjW.ttf) format('truetype');
 }
 @font-face {
@@ -40,18 +40,18 @@ border: solid 0.5em black;
 
 #title{
 margin: 20px auto;
-font-family: 'cardbuncleFont';
+font-family: 'cardbungleFont';
 font-size: 120px;
 -webkit-text-stroke: black 0.5px;
 }
 
 #score {
     font-size: 24px;
-    font-family: 'cardbuncleFont', 'Courier New', Courier, monospace;
+    font-family: 'cardbungleFont', 'Courier New', Courier, monospace;
 }
 
 #cardsLeft {
-    font-family: 'cardbuncleNumbers', 'Courier New', Courier, monospace;
+    font-family: 'cardbungleNumbers', 'Courier New', Courier, monospace;
 }
 
 #startAgain, #how2play {
@@ -62,7 +62,7 @@ font-size: 120px;
     border: solid 2px black;
     border-radius: 5%;
     color: antiquewhite;
-    font-family: 'cardbuncleFont', 'Courier New', Courier, monospace;
+    font-family: 'cardbungleFont', 'Courier New', Courier, monospace;
     font-size: larger;
     cursor: pointer;
 }
@@ -198,7 +198,7 @@ z-index: 9999;
     border-radius: 3px;
     padding: 4px;
     font-size: 36px;
-    font-family: 'cardbuncleNumbers';
+    font-family: 'cardbungleNumbers';
 }
 
 .deckStack {
