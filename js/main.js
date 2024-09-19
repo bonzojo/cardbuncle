@@ -4,7 +4,8 @@
 
 //Dice
 const diceArray = ['assets/dice/dice1.png', 'assets/dice/dice2.png', 'assets/dice/dice3.png', 'assets/dice/dice4.png', 'assets/dice/dice5.png', 'assets/dice/dice6.png'];
-const diceButton = document.getElementById('rollDice');
+
+const diceButton = document.getElementById('rollDice'); // Roll dice
 const diceOne = document.getElementById('diceOne');
 const diceTwo = document.getElementById('diceTwo');
 
