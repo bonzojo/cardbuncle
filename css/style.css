@@ -230,6 +230,11 @@ z-index: 9999;
     border: solid 4px whitesmoke;
 }
 
+.deck-card.selected {
+    z-index: 1000;
+}
+
+
 /*About Page */
 #back2main {
     height: 60px;
