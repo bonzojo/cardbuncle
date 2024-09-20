@@ -20,6 +20,7 @@ The objective of the game is to get rid of all the cards in the deck.
 
 Future plans:
 
+- [ ] Have the user click the start button first. This is needed to initialize audio for browsers.
 - [ ] Add more intuitive controls. Instead of click dragging, the user can select with a click and it anchors elements to the cursor.
 - [ ] Visually animated win celebration. Coins and Carbuncle gems falling on the screen in a matrix rain code aesthetic.
 - [ ] Refactor codebase. Improve document flow and readability.

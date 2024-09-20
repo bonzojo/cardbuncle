@@ -59,22 +59,24 @@ const reshuffle = document.getElementById('startAgain');
 //--------------------
 // Sounds
 //--------------------
+let cardGrab, cardPlace, select, poof, diceRoll, buff, crystalHum;
 
 let soundInitialized = false;
 
 function initializeSounds() {
     if (!soundInitialized) {
-        const cardGrab = createSound('../assets/sfx/cardGrab.mp3', 0.2);
-        const cardPlace = createSound('../assets/sfx/cardPlace.mp3', 0.1);
-        const select = createSound('../assets/sfx/select.mp3', 0.2);
-        const poof = createSound('../assets/sfx/poof.mp3', 0.8);
-        const diceRoll = createSound('../assets/sfx/diceRoll.mp3', 0.2);
-        const buff = createSound('../assets/sfx/buff.mp3', 0.1);
-        const crystalHum = createSound('../assets/sfx/crystalHum.mp3', 0.4);
+        cardGrab = createSound('./assets/sfx/cardGrab.mp3', 0.2);
+        cardPlace = createSound('./assets/sfx/cardPlace.mp3', 0.1);
+        select = createSound('./assets/sfx/select.mp3', 0.2);
+        poof = createSound('./assets/sfx/poof.mp3', 0.8);
+        diceRoll = createSound('./assets/sfx/diceRoll.mp3', 0.2);
+        buff = createSound('./assets/sfx/buff.mp3', 0.1);
+        crystalHum = createSound('./assets/sfx/crystalHum.mp3', 0.4);
 
         soundInitialized = true;
     }
 }
+
 //Initialize Sounds// Function to create a Howl object
 function createSound(src, volume) {
     return new Howl({
@@ -82,15 +84,6 @@ function createSound(src, volume) {
       volume: volume,
     });
   }
-  
-  // Initialize Sounds using the factory function
-  const cardGrab = createSound('../assets/sfx/cardGrab.mp3', 0.2);
-  const cardPlace = createSound('../assets/sfx/cardPlace.mp3', 0.1);
-  const select = createSound('../assets/sfx/select.mp3', 0.2);
-  const poof = createSound('../assets/sfx/poof.mp3', 0.8);
-  const diceRoll = createSound('../assets/sfx/diceRoll.mp3', 0.2);
-  const buff = createSound('../assets/sfx/buff.mp3', 0.1);
-  const crystalHum = createSound('../assets/sfx/crystalHum.mp3', 0.4);
 
 //----------------
 // Event Listeners
@@ -98,7 +91,7 @@ function createSound(src, volume) {
 
 $(document).ready(function() {
     
-    document.addEventListener('click', initializeSounds, { once: true }); // for sounds
+    document.addEventListener('click', initializeSounds, { once: true }); // for sounds you need to click first. Put this in a modal.
     
     reshuffle.addEventListener('click', resetGame);
 
