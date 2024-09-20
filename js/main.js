@@ -56,80 +56,69 @@ const cardsLeft = document.getElementById('cardsLeft');
 const reshuffle = document.getElementById('startAgain');
 
 
-//Initialize Sounds
-const cardGrab = new Howl({
-    src: ['../assets/sfx/cardGrab.mp3'],
-    volume: 0.2,
-  });
+//--------------------
+// Sounds
+//--------------------
 
-  const cardPlace = new Howl({
-    src: ['../assets/sfx/cardPlace.mp3'],
-    volume: 0.1,
-  });
-
-  const select = new Howl({
-    src: ['../assets/sfx/select.mp3'],
-    volume: 0.2,
-  });
-
-  const poof = new Howl({
-    src: ['../assets/sfx/poof.mp3'],
-    volume: 0.8,
-  });
-
-  const diceRoll = new Howl({
-    src: ['../assets/sfx/diceRoll.mp3'],
-    volume: 0.2,
-  });
-
-  const buff = new Howl({
-    src: ['../assets/sfx/buff.mp3'],
-    volume: 0.1,
-  });
-
-  const crystalHum = new Howl({
-    src: ['../assets/sfx/crystalHum.mp3'],
-    volume: 0.4,
-  });
-
+//Initialize Sounds// Function to create a Howl object
+function createSound(src, volume) {
+    return new Howl({
+      src: [src],
+      volume: volume,
+    });
+  }
+  
+  // Initialize Sounds using the factory function
+  const cardGrab = createSound('../assets/sfx/cardGrab.mp3', 0.2);
+  const cardPlace = createSound('../assets/sfx/cardPlace.mp3', 0.1);
+  const select = createSound('../assets/sfx/select.mp3', 0.2);
+  const poof = createSound('../assets/sfx/poof.mp3', 0.8);
+  const diceRoll = createSound('../assets/sfx/diceRoll.mp3', 0.2);
+  const buff = createSound('../assets/sfx/buff.mp3', 0.1);
+  const crystalHum = createSound('../assets/sfx/crystalHum.mp3', 0.4);
 
 //----------------
 // Event Listeners
 //----------------
 
-reshuffle.addEventListener('click', resetGame);
+$(document).ready(function() {
+    
+    reshuffle.addEventListener('click', resetGame);
 
-gridSquares.forEach(gridSquare => {
-    gridSquare.addEventListener('dragover', handleDragOver);
-    gridSquare.addEventListener('drop', handleDrop);
+    gridSquares.forEach(gridSquare => {
+        gridSquare.addEventListener('dragover', handleDragOver);
+        gridSquare.addEventListener('drop', handleDrop);
+
+    });
+
+    // Add event listeners to the dice elements
+    diceButton.addEventListener('click', rollDice);
+
+    diceOne.addEventListener('dragstart', (event) => {
+        event.dataTransfer.setData('type', 'dice');
+        event.dataTransfer.setData('text/plain', 'diceOne');
+        crystalHum.play();
+        gridSquares.forEach(square => square.classList.add('pulsing-glow'));
+
+    });
+    diceTwo.addEventListener('dragstart', (event) => {
+        event.dataTransfer.setData('type', 'dice');
+        event.dataTransfer.setData('text/plain', 'diceTwo');
+        crystalHum.play();
+        gridSquares.forEach(square => square.classList.add('pulsing-glow'));
+    });
+
+    diceOne.addEventListener('dragend', () => {
+        crystalHum.stop();
+        gridSquares.forEach(square => square.classList.remove('pulsing-glow'));
+    });
+    diceTwo.addEventListener('dragend', () => {
+        crystalHum.stop();
+        gridSquares.forEach(square => square.classList.remove('pulsing-glow'));
+    });
+
+
 });
-
-// Add event listeners to the dice elements
-diceButton.addEventListener('click', rollDice);
-
-diceOne.addEventListener('dragstart', (event) => {
-    event.dataTransfer.setData('type', 'dice');
-    event.dataTransfer.setData('text/plain', 'diceOne');
-    crystalHum.play();
-    gridSquares.forEach(square => square.classList.add('pulsing-glow'));
-
-});
-diceTwo.addEventListener('dragstart', (event) => {
-    event.dataTransfer.setData('type', 'dice');
-    event.dataTransfer.setData('text/plain', 'diceTwo');
-    crystalHum.play();
-    gridSquares.forEach(square => square.classList.add('pulsing-glow'));
-});
-
-diceOne.addEventListener('dragend', () => {
-    crystalHum.stop();
-    gridSquares.forEach(square => square.classList.remove('pulsing-glow'));
-});
-diceTwo.addEventListener('dragend', () => {
-    crystalHum.stop();
-    gridSquares.forEach(square => square.classList.remove('pulsing-glow'));
-});
-
 
 //---------------
 // Functions
