@@ -60,6 +60,21 @@ const reshuffle = document.getElementById('startAgain');
 // Sounds
 //--------------------
 
+let soundInitialized = false;
+
+function initializeSounds() {
+    if (!soundInitialized) {
+        const cardGrab = createSound('../assets/sfx/cardGrab.mp3', 0.2);
+        const cardPlace = createSound('../assets/sfx/cardPlace.mp3', 0.1);
+        const select = createSound('../assets/sfx/select.mp3', 0.2);
+        const poof = createSound('../assets/sfx/poof.mp3', 0.8);
+        const diceRoll = createSound('../assets/sfx/diceRoll.mp3', 0.2);
+        const buff = createSound('../assets/sfx/buff.mp3', 0.1);
+        const crystalHum = createSound('../assets/sfx/crystalHum.mp3', 0.4);
+
+        soundInitialized = true;
+    }
+}
 //Initialize Sounds// Function to create a Howl object
 function createSound(src, volume) {
     return new Howl({
@@ -67,21 +82,14 @@ function createSound(src, volume) {
       volume: volume,
     });
   }
-  
-  // Initialize Sounds using the factory function
-  const cardGrab = createSound('../assets/sfx/cardGrab.mp3', 0.2);
-  const cardPlace = createSound('../assets/sfx/cardPlace.mp3', 0.1);
-  const select = createSound('../assets/sfx/select.mp3', 0.2);
-  const poof = createSound('../assets/sfx/poof.mp3', 0.8);
-  const diceRoll = createSound('../assets/sfx/diceRoll.mp3', 0.2);
-  const buff = createSound('../assets/sfx/buff.mp3', 0.1);
-  const crystalHum = createSound('../assets/sfx/crystalHum.mp3', 0.4);
 
 //----------------
 // Event Listeners
 //----------------
 
 $(document).ready(function() {
+
+    document.addEventListener('click', initializeSounds, { once: true }); // For sounds
     
     reshuffle.addEventListener('click', resetGame);
 
@@ -189,7 +197,7 @@ function handleDrop(event) {
         cardPlace.play();
     }
 
-    // Handle dropping dice (this part of your code seems fine)
+    // Handle dropping dice
     else if (itemType === 'dice') {
         const diceId = event.dataTransfer.getData('text/plain');
     
