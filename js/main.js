@@ -82,14 +82,23 @@ function createSound(src, volume) {
       volume: volume,
     });
   }
+  
+  // Initialize Sounds using the factory function
+  const cardGrab = createSound('../assets/sfx/cardGrab.mp3', 0.2);
+  const cardPlace = createSound('../assets/sfx/cardPlace.mp3', 0.1);
+  const select = createSound('../assets/sfx/select.mp3', 0.2);
+  const poof = createSound('../assets/sfx/poof.mp3', 0.8);
+  const diceRoll = createSound('../assets/sfx/diceRoll.mp3', 0.2);
+  const buff = createSound('../assets/sfx/buff.mp3', 0.1);
+  const crystalHum = createSound('../assets/sfx/crystalHum.mp3', 0.4);
 
 //----------------
 // Event Listeners
 //----------------
 
 $(document).ready(function() {
-
-    document.addEventListener('click', initializeSounds, { once: true }); // For sounds
+    
+    document.addEventListener('click', initializeSounds, { once: true }); // for sounds
     
     reshuffle.addEventListener('click', resetGame);
 
