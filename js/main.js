@@ -90,6 +90,8 @@ function createSound(src, volume) {
 //----------------
 
 $(document).ready(function() {
+
+    alert('Cardbungle is a prototype proof of concept and a work in progress. Bugs are expected. There is a known issue with card duplication. If this happens, please refresh the page.')
     
     document.addEventListener('click', initializeSounds, { once: true }); // for sounds you need to click first. Put this in a modal.
     
